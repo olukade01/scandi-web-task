@@ -11,7 +11,7 @@ class index extends Component {
         <Wrapper>
           {productToShow.map((product, index) => 
           <ProductCard key={`product-index${index}`} product={product}/>
-                    )}
+          )}
         </Wrapper>
       </div>
     );

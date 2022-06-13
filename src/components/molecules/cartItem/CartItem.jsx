@@ -13,17 +13,17 @@ class CartItem extends Component {
   render() {
     return (
       <Wrapper>
-        <CartItemDetails/>
+        <CartItemDetails items={this.props.items} large={this.props.large}/>
         <ItemImgWrapper>
           <ItemQuantityWrapper>
             <AddButton large={this.props.large}>+</AddButton>
-            <ItemQuantity>2</ItemQuantity>
+            <ItemQuantity>{this.props.items.quantity}</ItemQuantity>
             <AddButton large={this.props.large}>-</AddButton>
           </ItemQuantityWrapper>
           <ItemDisplayWrapper>
             <ArrowLeft alt='arrow'/>
             <ArrowRight alt='arrow'/>
-            <ItemImage alt='cart-item-img'/>
+            <ItemImage src={this.props.items.image} alt='cart-item-img'/>
           </ItemDisplayWrapper>
         </ItemImgWrapper>
       </Wrapper>

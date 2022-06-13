@@ -29,6 +29,12 @@ export const ItemPrice = styled.span`
   margin-top: 0.75rem;
 
   ${(props) =>
+    props.pdp &&
+    css`
+      display: none;
+    `}
+
+  ${(props) =>
     props.large &&
     css`
       font-weight: 700;

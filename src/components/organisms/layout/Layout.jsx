@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Main, Wrapper } from './LayoutStyle'
+import { Content, Main, Wrapper } from './LayoutStyle'
 import Navbar from '../navbar/Navbar'
 
 export default class index extends Component {
   render() {
     return (
       <Wrapper>
-        <Navbar></Navbar>
-        <Main></Main>
+        <Navbar/>
+        <Main>
+          <Content>{this.props.children}</Content>
+        </Main>
       </Wrapper>
     )
   }
