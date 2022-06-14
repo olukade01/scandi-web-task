@@ -9,7 +9,7 @@ export const CartWrapper = styled.div`
   flex-direction: column;
   margin-top: 1.56rem;
   padding-bottom: 12rem;
-  width: 68.62rem;
+  /* width: 68.62rem; */
 `;
 export const EmptyCart = styled.span`
   text-align: center;
@@ -18,3 +18,13 @@ export const EmptyCart = styled.span`
   font-weight: 300;
   opacity: 0.5;
 `;
+export const TotalOrder = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+`;
+export const OrderDetails = styled.div`
+  display: flex;
+`;
+// export const TotalOrder = styled.div``
+// export const TotalOrder = styled.div``

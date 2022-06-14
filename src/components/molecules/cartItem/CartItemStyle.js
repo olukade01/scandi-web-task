@@ -3,7 +3,7 @@ import { Size } from "../cartItemDetails/CartDetailsStyle";
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   overflow-y: hidden;
   margin-bottom: 2.5rem;
@@ -41,7 +41,7 @@ export const AddButton = styled(Size)`
 export const ItemDisplayWrapper = styled.div`
   position: relative;
   width: 8.81rem;
-  height: 11rem;
+  height: 15rem;
 
   &:hover {
     img[alt="arrow"] {
@@ -50,7 +50,7 @@ export const ItemDisplayWrapper = styled.div`
   }
 `;
 export const ItemImage = styled.img`
-  -o-object-fit: contain;
+  /* -o-object-fit: contain; */
   object-fit: contain;
   width: 100%;
   height: 100%;

@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   place-content: center;
   grid-row-gap: 6.44rem;
   grid-column-gap: 2.5rem;
-  padding-bottom: 12rem;
+  padding-bottom: 20rem;
 `;
 export const Title = styled.span`
   font-weight: 400;

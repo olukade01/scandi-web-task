@@ -6,7 +6,7 @@ export const cartItemsData = [
     sizes: ["XS", "S", "M", "L"],
     colors: ["#000", "#fff", "#000"],
     quantity: "1",
-    image: "",
+    image: "/assets/images/image.png",
   },
   {
     title: "Jupiter",
@@ -15,6 +15,6 @@ export const cartItemsData = [
     sizes: ["S", "M"],
     colors: ["#000", "#fff", "#000"],
     quantity: "2",
-    image: "",
+    image: "/assets/images/Shade.png",
   },
 ];

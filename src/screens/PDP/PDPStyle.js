@@ -60,30 +60,31 @@ export const PDBigImage = styled.img`
   object-fit: contain;
   object-position: center;
 `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
-// export const Wrapper = styled.div`
-//   display: flex;
-// `;
+export const PDDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: 28.93rem;
+  overflow: auto;
+  padding-right: 1rem;
+`;
+export const Price = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 2.5rem 0 1.56rem;
+`;
+export const PriceLabel = styled.span`
+  font-weight: 700;
+  font-size: 1.125rem;
+`;
+export const PriceValue = styled.span`
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 0.825rem;
+`;
+export const Info = styled.span`
+  max-width: 18.3rem;
+`;
+export const ButtonWrapper = styled.div`
+  margin-bottom: 2.5rem;
+  width: 18.3rem;
+`;

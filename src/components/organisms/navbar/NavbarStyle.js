@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 80px;
   height: 80px;
   color: #1d1f22;
   padding: 0 6.31rem 0 7.31rem;
@@ -51,16 +52,37 @@ export const CurrencyWrapper = styled.div`
   /* user-select: none; */
 `;
 export const Cart = styled.div`
-  /* display: flex; */
-  /* align-items: center; */
-  /* position: relative; */
-  /* user-select: none; */
+  display: flex;
+  align-items: center;
+  position: relative;
+  user-select: none;
 `;
 export const CurrencyDisplay = styled.span`
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* width: 2rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
   /* height: 1.81rem; */
   /* margin-right: 0.5rem; */
+`;
+export const Badges = styled.div`
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: #1d1f22;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.87rem;
+  position: absolute;
+  right: -0.7rem;
+  top: -0.7rem;
+`;
+export const CaretWrapper = styled.div`
+  display: flex;
+  /* height: 1rem; */
+  margin-bottom: 0.3rem;
+  align-self: flex-end;
 `;

@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import CartItem from '../../components/molecules/cartItem/CartItem';
-import { cartItemsData } from '../../data/cart-items';
-import { CartWrapper, EmptyCart, Title } from './CartStyle';
+import React, { Component } from "react";
+import Button from "../../components/atom/Button";
+import CartItem from "../../components/molecules/cartItem/CartItem";
+import { cartItemsData } from "../../data/cart-items";
+import { CartWrapper, EmptyCart, Title, TotalOrder } from "./CartStyle";
 
 class index extends Component {
   render() {
@@ -10,8 +11,12 @@ class index extends Component {
         <Title>CART</Title>
         <CartWrapper>
           {!cartItemsData.length && <EmptyCart>No Item in Cart</EmptyCart>}
-        {cartItemsData.map((items, index) => <CartItem key={`cartItemsIndex${index}`} large items={items}/>)}
-        <></>
+          {cartItemsData.map((items, index) => (
+            <CartItem key={`cartItemsIndex${index}`} large items={items} />
+          ))}
+          <TotalOrder>
+            <Button title="ORDER" />
+          </TotalOrder>
         </CartWrapper>
       </div>
     );

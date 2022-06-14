@@ -1,24 +1,23 @@
-import React from 'react'
-import {styled} from 'styled-components'
-import GlobalStyles from './globalStyles'
-import Layout from './components/organisms/layout/Layout'
-import AppRoutes from './AppRoutes'
+import React, { Fragment } from "react";
+import styled from "styled-components";
+import GlobalStyles from "./globalStyles";
+import Layout from "./components/organisms/layout/Layout";
+import AppRoutes from "./AppRoutes";
 
-const Container = styled.div``
-const Wrapper = styled.div``
+const Wrapper = styled.div``;
 class App extends React.Component {
   render() {
     return (
-      <Container>
-        <GlobalStyles/>
+      <Fragment>
+        <GlobalStyles />
         <Wrapper>
           <Layout>
-            <AppRoutes/>
+            <AppRoutes />
           </Layout>
         </Wrapper>
-      </Container>
-    )
+      </Fragment>
+    );
   }
 }
 
-export default App
+export default App;
