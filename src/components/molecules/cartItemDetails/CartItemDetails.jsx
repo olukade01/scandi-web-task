@@ -5,6 +5,7 @@ import {
   ItemDesc,
   ItemName,
   ItemPrice,
+  Label,
   Size,
   Sizes,
   Wrapper,
@@ -15,17 +16,21 @@ export default class CartItemDetails extends Component {
     return (
       <Wrapper large={this.props.large}>
         <ItemName large={this.props.large}>{this.props.items.title}</ItemName>
-        <ItemDesc>{this.props.items.desc}</ItemDesc>
+        <ItemDesc pdp={this.props.pdp}>{this.props.items.desc}</ItemDesc>
         <ItemPrice pdp={this.props.pdp} large={this.props.large}>
           {this.props.items.amount}
         </ItemPrice>
-        <span>Size:</span>
+        <Label pdp={this.props.pdp} large={this.props.large}>
+          Size:
+        </Label>
         <Sizes large={this.props.large}>
           {this.props.items.sizes.map((size) => (
             <Size large={this.props.large}>{size}</Size>
           ))}
         </Sizes>
-        <span>Color:</span>
+        <Label pdp={this.props.pdp} large={this.props.large}>
+          Color:
+        </Label>
         <Sizes large={this.props.large}>
           {this.props.items.colors.map((color, index) => (
             <Color

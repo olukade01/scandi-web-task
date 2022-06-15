@@ -46,7 +46,7 @@ class index extends Component {
               <PriceValue>$50.00</PriceValue>
             </Price>
             <ButtonWrapper>
-              <Button title="ADD TO CART" />
+              <Button pdp title="ADD TO CART" />
             </ButtonWrapper>
             <Info>
               Find stunning women's cocktail dresses and party dresses. Stand

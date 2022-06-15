@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 
   ${(props) =>
     props.large &&
@@ -22,11 +22,33 @@ export const ItemName = styled.span`
     `}
 `;
 export const ItemDesc = styled.span`
-  margin: 0.3rem 0;
+  margin: 0.4rem 0;
+
+  ${(props) =>
+    props.pdp &&
+    css`
+      margin-bottom: 1.18rem;
+    `};
+`;
+export const Label = styled.span`
+  margin-top: 0.6rem;
+  ${(props) =>
+    props.large &&
+    css`
+      margin-top: 1rem;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+    `}
+  ${(props) =>
+    props.pdp &&
+    css`
+      margin-top: 1.5rem;
+    `};
 `;
 export const ItemPrice = styled.span`
   font-weight: 500;
-  margin-top: 0.75rem;
+  margin-top: 0.7rem;
 
   ${(props) =>
     props.pdp &&
@@ -44,13 +66,13 @@ export const ItemPrice = styled.span`
 export const Sizes = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 1.687rem;
+  margin-top: 0.4rem;
   column-gap: 0.5rem;
 
   ${(props) =>
     props.large &&
     css`
-      margin-top: 1.2rem;
+      margin-top: 0.5rem;
     `}
 `;
 export const Size = styled.span`
@@ -60,8 +82,8 @@ export const Size = styled.span`
   height: 1.5rem;
   width: 1.5rem;
   border: 1px solid #1d1f22;
-  user-select: none;
-  text-align: center;
+  /* user-select: none; */
+  /* text-align: center; */
   font-weight: 400;
   font-size: 0.875rem;
 
@@ -70,6 +92,7 @@ export const Size = styled.span`
     css`
       height: 2.81rem;
       width: 3.93rem;
+      font-size: 1rem;
     `}
 
   ${({ active }) =>

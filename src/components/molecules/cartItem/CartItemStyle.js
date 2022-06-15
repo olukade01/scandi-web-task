@@ -5,10 +5,19 @@ export const Wrapper = styled.div`
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   margin-bottom: 2.5rem;
-  max-height: 13rem;
-  height: 13rem;
+  max-height: 12.3rem;
+  height: 12.3rem;
+
+  ${({ large }) =>
+    large &&
+    css`
+      max-height: 18.3rem;
+      height: 18.3rem;
+      padding-bottom: 1.7rem;
+      border-bottom: 1px solid #e5e5e5;
+    `}
 `;
 export const ItemImgWrapper = styled.div`
   display: flex;
@@ -22,6 +31,11 @@ export const ItemQuantityWrapper = styled.div`
   justify-content: space-between;
   align-self: stretch;
   margin-right: 0.6rem;
+  ${({ large }) =>
+    large &&
+    css`
+      margin-right: 1.5rem;
+    `}
 `;
 export const ItemQuantity = styled.span`
   text-align: center;
@@ -40,31 +54,38 @@ export const AddButton = styled(Size)`
 `;
 export const ItemDisplayWrapper = styled.div`
   position: relative;
-  width: 8.81rem;
-  height: 15rem;
-
-  &:hover {
+  width: 8.4rem;
+  height: 100%;
+  ${({ large }) =>
+    large &&
+    css`
+      /* width: 2.81rem; */
+      width: 12.5rem;
+    `}/* &:hover {
     img[alt="arrow"] {
       display: inline;
     }
-  }
+  } */
 `;
 export const ItemImage = styled.img`
   /* -o-object-fit: contain; */
-  object-fit: contain;
+  object-fit: cover;
+  object-position: bottom;
   width: 100%;
   height: 100%;
 `;
 export const ArrowRight = styled.img`
   position: absolute;
-  display: none;
+  background: rgba(0, 0, 0, 0.73);
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
-  z-index: 800;
-  right: 0;
-  top: calc(50%-0.75rem);
+  /* z-index: 800; */
+  right: 1rem;
+  bottom: 1rem;
+  /* top: calc(50%-0.75rem); */
 `;
 export const ArrowLeft = styled(ArrowRight)`
-  left: 0;
+  right: 3rem;
   transform: rotate(180deg);
-  transition: 0.2s all ease-in-out;
+  /* transition: 0.2s all ease-in-out; */
 `;

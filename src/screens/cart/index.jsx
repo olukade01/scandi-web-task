@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import Button from "../../components/atom/Button";
 import CartItem from "../../components/molecules/cartItem/CartItem";
-import { cartItemsData } from "../../data/cart-items";
-import { CartWrapper, EmptyCart, Title, TotalOrder } from "./CartStyle";
+import { cartItemsData, CartOrder } from "../../data/cart-items";
+import {
+  ButtonWrapper,
+  CartWrapper,
+  EmptyCart,
+  LightOrderDetails,
+  OrderDetails,
+  Title,
+  TotalOrder,
+} from "./CartStyle";
 
 class index extends Component {
   render() {
@@ -15,7 +23,17 @@ class index extends Component {
             <CartItem key={`cartItemsIndex${index}`} large items={items} />
           ))}
           <TotalOrder>
-            <Button title="ORDER" />
+            {CartOrder.map((order, index) => (
+              <OrderDetails>
+                <LightOrderDetails bold={index === CartOrder.length - 1}>
+                  {order.name}:
+                </LightOrderDetails>
+                <span>{order.value}</span>
+              </OrderDetails>
+            ))}
+            <ButtonWrapper>
+              <Button title="ORDER" />
+            </ButtonWrapper>
           </TotalOrder>
         </CartWrapper>
       </div>

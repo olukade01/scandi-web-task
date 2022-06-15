@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Title = styled.span`
   font-weight: 700;
@@ -7,8 +7,10 @@ export const Title = styled.span`
 export const CartWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 1.56rem;
+  margin-top: 3.43rem;
   padding-bottom: 12rem;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 1.5rem;
   /* width: 68.62rem; */
 `;
 export const EmptyCart = styled.span`
@@ -22,9 +24,24 @@ export const TotalOrder = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
+  margin-top: 0.5rem;
 `;
-export const OrderDetails = styled.div`
+export const OrderDetails = styled.span`
   display: flex;
+  font-size: 1.5rem;
+  font-weight: 700;
 `;
-// export const TotalOrder = styled.div``
-// export const TotalOrder = styled.div``
+export const ButtonWrapper = styled.div`
+  max-width: 17.5rem;
+  margin-top: 0.5rem;
+`;
+export const LightOrderDetails = styled(OrderDetails)`
+  font-weight: 300;
+  width: 6.2rem;
+
+  ${(props) =>
+    props.bold &&
+    css`
+      font-weight: 500;
+    `}
+`;

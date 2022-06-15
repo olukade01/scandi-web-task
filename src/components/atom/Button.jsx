@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const ButtonWrapper = styled.div`
-  font-weight: 600;
-  flex-grow: 1;
+  font-weight: 500;
+  /* flex-grow: 1; */
   font-size: 0.875rem;
   outline: none;
+  cursor: pointer;
   padding: 0.81rem 0;
-  border: ${({ border }) => border || "none"};
+  border: ${({ border }) => border || "1px solid #5ece7b"};
   color: ${({ color }) => color || "#fff"};
   background: ${({ background }) => background || "#5ece7b"};
+  text-align: center;
+
+  ${(props) =>
+    props.pdp &&
+    css`
+      padding: 1.1rem 0;
+      font-size: 1rem;
+    `}
 `;
 
 export default class Button extends Component {
@@ -24,6 +33,7 @@ export default class Button extends Component {
         color={this.props.color}
         border={this.props.border}
         background={this.props.background}
+        pdp={this.props.pdp}
       >
         {this.props.title}
       </ButtonWrapper>

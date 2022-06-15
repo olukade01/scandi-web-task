@@ -31,7 +31,8 @@ export const MainContainer = styled.div`
 `;
 export const PDBigImageWrapper = styled.div`
   width: 38.12rem;
-  height: 28.93rem;
+  height: 31.93rem;
+  background-color: red;
   transition: 0.2s all ease-in-out;
 
   ${(props) =>
@@ -55,22 +56,22 @@ export const PDBigImageWrapper = styled.div`
 `;
 
 export const PDBigImage = styled.img`
-  width: 38.12rem;
-  height: 28.93rem;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
 `;
 export const PDDetails = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 28.93rem;
-  overflow: auto;
+  /* max-height: 28.93rem; */
+  /* overflow: auto; */
   padding-right: 1rem;
 `;
 export const Price = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 2.5rem 0 1.56rem;
+  margin: 2.25rem 0 1.56rem;
 `;
 export const PriceLabel = styled.span`
   font-weight: 700;
@@ -83,8 +84,9 @@ export const PriceValue = styled.span`
 `;
 export const Info = styled.span`
   max-width: 18.3rem;
+  line-height: 25.6px;
 `;
 export const ButtonWrapper = styled.div`
   margin-bottom: 2.5rem;
-  width: 18.3rem;
+  width: 18rem;
 `;
