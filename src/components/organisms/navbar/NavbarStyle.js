@@ -12,21 +12,20 @@ export const Wrapper = styled.div`
 export const NavTabs = styled.div`
   display: flex;
   align-items: center;
-  column-gap: 2rem;
-  /* height: 100%; */
-  /* margin-bottom: 0.1rem; */
+  height: 100%;
 `;
 export const Tab = styled.span`
   cursor: pointer;
-  /* height: 100%; */
-  /* display: flex; */
-  /* align-items: center; */
+  height: 100%;
+  display: flex;
+  padding: 0 1.3rem;
+  align-items: center;
   border-bottom: 2px solid transparent;
 
   &.active {
     border-bottom-color: #5ece7b;
     color: #5ece7b;
-    font-weight: 600;
+    font-weight: 500;
   }
 `;
 export const ImgWrapper = styled.img`
@@ -54,6 +53,7 @@ export const CurrencyWrapper = styled.div`
 `;
 export const Cart = styled.div`
   display: flex;
+  cursor: pointer;
   align-items: center;
   position: relative;
   user-select: none;

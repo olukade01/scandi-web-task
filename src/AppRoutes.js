@@ -9,7 +9,7 @@ class AppRoutes extends React.Component {
     return (
       <Routes>
         <Route path="/cart" element={<Cart />} />
-        <Route path="/product" element={<PDP />} />
+        <Route path="/product/:id" element={<PDP />} />
         <Route path="/" element={<Home />} />
       </Routes>
     );

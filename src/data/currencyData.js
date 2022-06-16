@@ -1,1 +1,1 @@
-export const currencyData = ["$ USD", "$ EUR", "$ JPY"];
+// export const currencyData = [];

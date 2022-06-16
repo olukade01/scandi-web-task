@@ -1,11 +1,3 @@
-export const categories = [
-  {
-    name: 'WOMEN'
-  },
-  {
-    name: 'MEN'
-  },
-  {
-    name: 'KIDS'
-  }
-]
+// export const categories = [
+
+// ]

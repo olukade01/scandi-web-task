@@ -1,9 +1,12 @@
 import React, { createRef } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { currencyData } from "../../../data/currencyData";
-import { categories } from "../../../data/nav-options";
-import { changeCurrency } from "../../../store/actions";
+import {
+  changeCurrency,
+  closeCart,
+  setCategory,
+  toggleCart,
+} from "../../../store/actions";
 import {
   Wrapper,
   Tab,
@@ -62,12 +65,21 @@ class index extends React.Component {
   }
 
   render() {
-    const showBadges = categories.length > 0;
+    const navTabs = this.props.tab;
+    const showBadges = navTabs.length > 0;
     return (
       <Wrapper>
         <NavTabs>
-          {categories.map((category, tabIndex) => (
-            <Tab key={`categoriesIndex_${tabIndex}`}>{category.name}</Tab>
+          {navTabs.map((tab, tabIndex) => (
+            <Tab
+              key={`categoriesIndex_${tabIndex}`}
+              className={
+                this.props.selectedCategory === tab.name ? "active" : ""
+              }
+              onClick={() => this.props.setCategory(tab.name)}
+            >
+              {tab.name}
+            </Tab>
           ))}
         </NavTabs>
         <Link to="/">
@@ -77,7 +89,10 @@ class index extends React.Component {
           <SideAction>
             <CurrencyWrapper
               data-name="currency-box"
-              onClick={() => this.toggleFilter()}
+              onClick={() => {
+                this.toggleFilter();
+                this.props.closeCart();
+              }}
             >
               <CurrencyDisplay data-name="currency-box">
                 {this.props.currency}
@@ -91,14 +106,14 @@ class index extends React.Component {
                 />
               </CaretWrapper>
             </CurrencyWrapper>
-            <Cart>
-              {showBadges && <Badges>{categories.length}</Badges>}
+            <Cart onClick={() => this.props.toggleCart()}>
+              {showBadges && <Badges>{navTabs.length}</Badges>}
               <ImgWrapper alt="cart-icon" src="/assets/vectors/cart-icon.svg" />
             </Cart>
           </SideAction>
           {this.state.showFilterOption && (
             <FilterOptions ref={this.currencyBox}>
-              {currencyData.map((option, index) => (
+              {this.props.currencies.map((option, index) => (
                 <Option
                   key={`currency-data-index${index}`}
                   onClick={() => this.handleCurrencyChange(option.charAt(0))}
@@ -115,8 +130,14 @@ class index extends React.Component {
 }
 const mapStateToProps = (state) => ({
   currency: state.selectedCurrency,
+  tab: state.categories,
+  selectedCategory: state.selectedCategory,
+  currencies: state.currencies,
 });
 const mapDispatchToProps = (dispatch) => ({
+  toggleCart: () => dispatch(toggleCart()),
   changeCurrency: (currency) => dispatch(changeCurrency(currency)),
+  setCategory: (tab) => dispatch(setCategory(tab)),
+  closeCart: () => dispatch(closeCart()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(index);
