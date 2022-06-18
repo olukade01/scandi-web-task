@@ -1,18 +1,17 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Cart from "./screens/cart";
 import Home from "./screens/home";
 import PDP from "./screens/PDP";
 
-class AppRoutes extends React.Component {
+export default class AppRoutes extends React.Component {
   render() {
     return (
-      <Routes>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<PDP />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/product/:id" component={PDP} />
+      </Switch>
     );
   }
 }
-export default AppRoutes;

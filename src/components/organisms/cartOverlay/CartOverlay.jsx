@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { cartItemsData } from "../../../data/cart-items";
+import { toggleCart } from "../../../store/actions";
 import Button from "../../atom/Button";
 import CartItem from "../../molecules/cartItem/CartItem";
 import {
@@ -16,6 +18,8 @@ import {
 
 class CartOverlay extends Component {
   render() {
+    const currency = this.props.selectedCurrency;
+
     return (
       <Wrapper>
         <MiniCart>
@@ -29,10 +33,14 @@ class CartOverlay extends Component {
           </CartItemsWrapper>
           <TotalCost>
             <Title>Total</Title>
-            <Title>$200</Title>
+            <Title>{currency}200</Title>
           </TotalCost>
           <Buttons>
-            <Link style={{ textDecoration: "none" }} to="">
+            <Link
+              onClick={() => this.props.toggleCart()}
+              style={{ textDecoration: "none" }}
+              to="/cart"
+            >
               <ButtonWrapper>
                 <Button
                   background="transparent"
@@ -52,4 +60,12 @@ class CartOverlay extends Component {
   }
 }
 
-export default CartOverlay;
+const mapStateToProps = (state) => ({
+  selectedCurrency: state.selectedCurrency,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleCart: () => dispatch(toggleCart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);
