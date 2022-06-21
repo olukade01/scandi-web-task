@@ -23,7 +23,7 @@ class index extends Component {
   // }
 
   render() {
-    console.log(this.props.history);
+    // console.log(this.props.history);
     return (
       <Fragment>
         <Title>WOMEN</Title>

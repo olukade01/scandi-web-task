@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Cart from "./screens/cart";
 import Home from "./screens/home";
 import PDP from "./screens/PDP";
@@ -7,11 +7,11 @@ import PDP from "./screens/PDP";
 export default class AppRoutes extends React.Component {
   render() {
     return (
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/product/:id" component={PDP} />
-      </Switch>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:id" element={<PDP />} />
+      </Routes>
     );
   }
 }
