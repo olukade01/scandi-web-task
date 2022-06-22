@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   changeCurrency,
-  closeCart,
   setCategory,
   toggleCart,
 } from "../../../store/actions";
@@ -91,7 +90,6 @@ class index extends React.Component {
               data-name="currency-box"
               onClick={() => {
                 this.toggleFilter();
-                this.props.closeCart();
               }}
             >
               <CurrencyDisplay data-name="currency-box">
@@ -138,6 +136,5 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCart: () => dispatch(toggleCart()),
   changeCurrency: (currency) => dispatch(changeCurrency(currency)),
   setCategory: (tab) => dispatch(setCategory(tab)),
-  closeCart: () => dispatch(closeCart()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(index);

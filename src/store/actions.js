@@ -4,12 +4,11 @@ import {
   CATEGORY,
   ALLCURRENCY,
   ALLCATEGORY,
-  CLOSECARTMINI,
+  MUTATEQUANTITY,
+  ADDTOCART,
+  DELETEITEMINCART,
 } from "./types";
 
-export const closeCart = () => ({
-  type: CLOSECARTMINI,
-});
 export const toggleCart = () => ({
   type: CARTMINI,
 });
@@ -29,7 +28,19 @@ export const setCurrencies = (currencies) => ({
   type: ALLCURRENCY,
   payload: { currencies },
 });
-// export const changeCurrency = (currency) => ({
-//   type: CURRENCY,
-//   payload: { currency },
-// });
+export const addToCart = (product) => ({
+  type: ADDTOCART,
+  payload: { product },
+});
+export const mutateProductQuantity = (
+  productId,
+  mutationType,
+  newSelectedOption
+) => ({
+  type: MUTATEQUANTITY,
+  payload: { mutationType, productId, newSelectedOption },
+});
+export const deleteCartItem = (productId) => ({
+  type: DELETEITEMINCART,
+  payload: { productId },
+});

@@ -92,7 +92,7 @@ export const FilterOptions = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   position: absolute;
-  z-index: 1;
+  z-index: 500;
   bottom: -820%;
   left: -10%;
   width: 140%;

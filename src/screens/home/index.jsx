@@ -26,7 +26,7 @@ class index extends Component {
     // console.log(this.props.history);
     return (
       <Fragment>
-        <Title>WOMEN</Title>
+        <Title>All</Title>
         <Wrapper>
           {productToShow.map((product, index) => (
             <ProductCard
