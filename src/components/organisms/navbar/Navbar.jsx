@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   changeCurrency,
+  setAllCategory,
   setCategory,
+  setCurrencies,
   toggleCart,
 } from "../../../store/actions";
+import opusClient from "../../../server";
 import {
   Wrapper,
   Tab,
@@ -21,6 +24,7 @@ import {
   FilterOptions,
   Option,
 } from "./NavbarStyle";
+import { ALL_CATEGORY, ALL_CURRENCY } from "../../../server/queries";
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -36,6 +40,29 @@ class index extends React.Component {
 
   async componentDidMount() {
     document.addEventListener("mousedown", this.currencyClickAway);
+
+    try {
+      const response = await Promise.allSettled([
+        opusClient.post(ALL_CURRENCY),
+        opusClient.post(ALL_CATEGORY),
+      ]);
+      console.log([response]);
+      var [allCurrencyData, allCategoryData] = response;
+
+      if (allCurrencyData.status === "fulfilled") {
+        var { currencies } = allCurrencyData.value;
+        var arrCurrencies = currencies.map((currency) => currency.label);
+        this.props.setCurrencies(arrCurrencies);
+        this.props.changeCurrency(arrCurrencies[0]);
+      }
+      if (allCategoryData.status === "fulfilled") {
+        var { categories } = allCategoryData.value;
+        const myCategories = categories;
+        this.props.setAllCategory(myCategories);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   componentWillUnmount() {
@@ -65,7 +92,7 @@ class index extends React.Component {
 
   render() {
     const navTabs = this.props.tab;
-    const showBadges = navTabs.length > 0;
+    const showBadges = this.props.cart.length > 0;
     return (
       <Wrapper>
         <NavTabs>
@@ -88,12 +115,10 @@ class index extends React.Component {
           <SideAction>
             <CurrencyWrapper
               data-name="currency-box"
-              onClick={() => {
-                this.toggleFilter();
-              }}
+              onClick={() => this.toggleFilter()}
             >
               <CurrencyDisplay data-name="currency-box">
-                {this.props.currency}
+                {this.props.currency.label}
               </CurrencyDisplay>
               <CaretWrapper data-name="currency-box">
                 <ImgWrapper
@@ -105,7 +130,7 @@ class index extends React.Component {
               </CaretWrapper>
             </CurrencyWrapper>
             <Cart onClick={() => this.props.toggleCart()}>
-              {showBadges && <Badges>{navTabs.length}</Badges>}
+              {showBadges && <Badges>{this.props.cart.length}</Badges>}
               <ImgWrapper alt="cart-icon" src="/assets/vectors/cart-icon.svg" />
             </Cart>
           </SideAction>
@@ -114,7 +139,7 @@ class index extends React.Component {
               {this.props.currencies.map((option, index) => (
                 <Option
                   key={`currency-data-index${index}`}
-                  onClick={() => this.handleCurrencyChange(option.charAt(0))}
+                  onClick={() => this.handleCurrencyChange(option)}
                 >
                   {option}
                 </Option>
@@ -126,15 +151,21 @@ class index extends React.Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   currency: state.selectedCurrency,
   tab: state.categories,
   selectedCategory: state.selectedCategory,
   currencies: state.currencies,
+  cart: state.cart,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   toggleCart: () => dispatch(toggleCart()),
   changeCurrency: (currency) => dispatch(changeCurrency(currency)),
   setCategory: (tab) => dispatch(setCategory(tab)),
+  setCurrencies: (currencies) => dispatch(setCurrencies(currencies)),
+  setAllCategory: (categories) => dispatch(setAllCategory(categories)),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(index);

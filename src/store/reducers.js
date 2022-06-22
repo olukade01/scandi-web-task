@@ -11,20 +11,10 @@ import {
 
 export const defaultState = {
   isCartOpen: false,
-  currencies: ["$ USD", "$ EUR", "$ JPY"],
-  categories: [
-    {
-      name: "All",
-    },
-    {
-      name: "MEN",
-    },
-    {
-      name: "KIDS",
-    },
-  ],
-  selectedCurrency: "$",
-  selectedCategory: "All",
+  currencies: [],
+  categories: [],
+  selectedCurrency: "",
+  selectedCategory: "all",
   cart: [],
 };
 
@@ -52,12 +42,58 @@ const reducer = (state = defaultState, action) => {
       if (isProductInCart) {
         const updatedCart = state.cart.map((item) => {
           if (item.id === isProductInCart.id) {
-            return;
+            item.selectedOptions = item.selectedOptions.concat(
+              action.payload.product.selectedOptions
+            );
+            item.quantity += 1;
           }
+          return item;
         });
-        return;
+        const result = { ...state, cart: updatedCart };
+        return result;
+      } else {
+        const selectedOptions = [action.payload.product.selectedOptions];
+        const updatedCart = state.cart.concat({
+          ...action.payload.product,
+          quantity: 1,
+          selectedOptions,
+        });
+        const result = { ...state, cart: updatedCart };
+        return result;
       }
-      return;
+
+    case MUTATEQUANTITY:
+      if (action.payload.mutationType === "add") {
+        const cartUpdate = state.cart.map((item) => {
+          if (item.id === action.payload.productId) {
+            item.selectedOptions = item.selectedOptions.concat(
+              action.payload.newSelectedOption
+            );
+            item.quantity += 1;
+          }
+          return item;
+        });
+        const result = { ...state, cart: cartUpdate };
+        return result;
+      } else {
+        const cartUpdate = state.cart.map((item) => {
+          if (item.id === action.payload.productId) {
+            item.selectedOptions = item.selectedOptions.filter(
+              (option, optionIndex, arr) => optionIndex !== arr.length - 1
+            );
+            item.quantity -= 1;
+          }
+          return item;
+        });
+        const result = { ...state, cart: cartUpdate };
+        return result;
+      }
+
+    case DELETEITEMINCART:
+      const deletedItem = state.cart.filter(
+        (item) => item.id !== action.payload.productId
+      );
+      return { ...state, cart: deletedItem };
 
     default:
       return state;

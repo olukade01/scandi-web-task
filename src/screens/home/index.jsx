@@ -1,39 +1,55 @@
 import React, { Component, Fragment } from "react";
 import ProductCard from "../../components/molecules/productCard/ProductCard";
+import opusClient from "../../OPUS";
 import { productToShow } from "../../data/products";
 import { Title, Wrapper } from "./HomeStyle";
+import { connect } from "react-redux";
+import { CATEGORY_QUERY } from "../../server/queries";
 
 class index extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-
-    // this.handleProductDetails = this.handleProductDetails.bind(this);
+    this.state = {
+      category: {},
+    };
   }
 
-  // handleProductDetails(product) {
-  //   // if (e.target.alt === "cart-icon") return null;
-  //   // var { id } = this.props.product;
+  async componentDidMount() {
+    try {
+      const selectedCat =
+        this.props.selectedCategory === "all"
+          ? ""
+          : this.props.selectedCategory;
+      var { category } = await opusClient.post(CATEGORY_QUERY(selectedCat));
+      this.state({ category });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //   // console.log(id);
-  //   var { history } = this.props;
-  //   // console.log(history);
-  //   history.push(`/product/${product}`);
-  //   // this.props.history.push(`/product/${id}`);
-  // }
+  async componentDidUpdate(prevProps) {
+    try {
+      if (prevProps.selectedCategory !== this.props.selectedCategory) {
+        const selectedCat =
+          this.props.selectedCategory === "all"
+            ? ""
+            : this.props.selectedCategory;
+        var { category } = await opusClient.post(CATEGORY_QUERY(selectedCat));
+        this.state({ category });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
-    // console.log(this.props.history);
+    const productsToShow = this.state.category.product || [];
     return (
       <Fragment>
-        <Title>All</Title>
+        <Title>{this.props.selectedCategory}</Title>
         <Wrapper>
-          {productToShow.map((product, index) => (
-            <ProductCard
-              // onClick={(product) => this.handleProductDetails(product.id)}
-              key={`product-index${index}`}
-              product={product}
-            />
+          {productsToShow.map((product, index) => (
+            <ProductCard key={`product-index${index}`} product={product} />
           ))}
         </Wrapper>
       </Fragment>
@@ -41,4 +57,8 @@ class index extends Component {
   }
 }
 
-export default index;
+const mapStateToProps = (state) => ({
+  selectedCategory: state.selectedCategory,
+});
+
+export default connect(mapStateToProps)(index);

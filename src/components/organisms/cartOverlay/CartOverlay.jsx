@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { cartItemsData } from "../../../data/cart-items";
+// import { cartItemsData } from "../../../data/cart-items";
 import { toggleCart } from "../../../store/actions";
+import { totalCartAmount } from "../../../utils";
 import Button from "../../atom/Button";
 import CartItem from "../../molecules/cartItem/CartItem";
 import {
@@ -18,23 +19,30 @@ import {
 
 class CartOverlay extends Component {
   render() {
+    const cartItemToShow =
+      this.props.cart.length > 2
+        ? this.props.cart.slice(0, 2)
+        : this.props.cart;
     const currency = this.props.selectedCurrency;
+    const total = totalCartAmount(this.props.cart, currency);
 
     return (
       <Wrapper>
         <MiniCart>
           <Title>
-            My Bag, <LightText>3 items</LightText>
+            My Bag, <LightText>{this.props.cart.length} items</LightText>
           </Title>
           <CartItemsWrapper>
-            {cartItemsData.map((items, index) => (
+            {cartItemToShow.map((items, index) => (
               <CartItem key={`cartItemsIndex${index}`} items={items} />
             ))}
           </CartItemsWrapper>
-          <TotalCost>
-            <Title>Total</Title>
-            <Title>{currency}200</Title>
-          </TotalCost>
+          {this.props.cart.length !== 0 && (
+            <TotalCost>
+              <Title>Total</Title>
+              <Title>{`${currency} ${total}`}</Title>
+            </TotalCost>
+          )}
           <Buttons>
             <Link
               onClick={() => this.props.toggleCart()}
@@ -61,6 +69,7 @@ class CartOverlay extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  cart: state.cart,
   selectedCurrency: state.selectedCurrency,
 });
 
