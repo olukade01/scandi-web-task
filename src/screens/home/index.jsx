@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import ProductCard from "../../components/molecules/productCard/ProductCard";
-import opusClient from "../../OPUS";
-import { productToShow } from "../../data/products";
+import opusClient from "../../server";
+// import { productToShow } from "../../data/products";
 import { Title, Wrapper } from "./HomeStyle";
 import { connect } from "react-redux";
 import { CATEGORY_QUERY } from "../../server/queries";
@@ -21,7 +21,7 @@ class index extends Component {
           ? ""
           : this.props.selectedCategory;
       var { category } = await opusClient.post(CATEGORY_QUERY(selectedCat));
-      this.state({ category });
+      this.setState({ category });
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +35,7 @@ class index extends Component {
             ? ""
             : this.props.selectedCategory;
         var { category } = await opusClient.post(CATEGORY_QUERY(selectedCat));
-        this.state({ category });
+        this.setState({ category });
       }
     } catch (error) {
       console.log(error);
@@ -43,13 +43,17 @@ class index extends Component {
   }
 
   render() {
-    const productsToShow = this.state.category.product || [];
+    const productsToShow = this.state.category.products || [];
     return (
       <Fragment>
         <Title>{this.props.selectedCategory}</Title>
         <Wrapper>
           {productsToShow.map((product, index) => (
-            <ProductCard key={`product-index${index}`} product={product} />
+            <ProductCard
+              key={`product-index${index}`}
+              history={this.props.history}
+              product={product}
+            />
           ))}
         </Wrapper>
       </Fragment>

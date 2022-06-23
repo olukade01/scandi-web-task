@@ -11,11 +11,17 @@ import {
 } from "./CartDetailsStyle";
 
 export default class CartItemDetails extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     item: {},
+  //   };
+  // }
   render() {
     return (
       <Wrapper large={this.props.large}>
-        <ItemName large={this.props.large}>{this.props.items.title}</ItemName>
-        <ItemDesc pdp={this.props.pdp}>{this.props.items.desc}</ItemDesc>
+        <ItemName large={this.props.large}>{this.props.prdName}</ItemName>
+        <ItemDesc pdp={this.props.pdp}>{this.props.prdDesc}</ItemDesc>
         <ItemPrice pdp={this.props.pdp} large={this.props.large}>
           {this.props.items.amount}
         </ItemPrice>

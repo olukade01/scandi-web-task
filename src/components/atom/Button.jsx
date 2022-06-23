@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.button`
   font-weight: 500;
   /* flex-grow: 1; */
   font-size: 0.875rem;

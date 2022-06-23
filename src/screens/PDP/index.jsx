@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Button from "../../components/atom/Button";
 import CartItemDetails from "../../components/molecules/cartItemDetails/CartItemDetails";
 import { cartItemsData } from "../../data/cart-items";
-import { images } from "../../data/pdp";
+// import { images } from "../../data/pdp";
+import opusClient from "../../server";
+import { PRODUCT_QUERY } from "../../server/queries";
+import { addToCart } from "../../store/actions";
+import { getPriceInCurrencySelected, setAttributesDefault } from "../../utils";
 import {
   ButtonWrapper,
   Info,
@@ -20,19 +25,83 @@ import {
 } from "./PDPStyle";
 
 class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: {},
+      selectedOptions: {},
+      selectedSmallImage: 0,
+    };
+
+    this.handleOptionSet = this.handleOptionSet.bind(this);
+    this.addItemToCart = this.addItemToCart.bind(this);
+  }
+
+  handleOptionSet(name, item) {
+    this.setState((currentState) => ({
+      selectedOptions: {
+        ...currentState.selectedOptions,
+        [name]: item,
+      },
+    }));
+  }
+
+  addItemToCart() {
+    const productToAdd = {
+      ...this.state.product,
+      selectedOptions: this.state.selectedOptions,
+    };
+    this.props.addToCart(productToAdd);
+  }
+
+  async componentDidMount() {
+    try {
+      const productId = this.props.match.params.id;
+      var { product } = await opusClient.post(PRODUCT_QUERY(productId));
+      this.setState({
+        product,
+        selectedOptions: setAttributesDefault(product),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   render() {
+    const productData = this.state.product;
+    const isDataFetched = Object.keys(productData).length;
+    const nameArr = String(productData.name).split(" ");
+    const productName = nameArr.length > 3 ? nameArr[0] : nameArr.join(" ");
+    const productShortDesc =
+      nameArr.length > 3 ? nameArr.slice(1).join(" ") : "";
+    const price = productData.prices
+      ? getPriceInCurrencySelected(productData.prices, this.props.currency)
+      : {};
+    const smallImages = productData.gallery
+      ? productData.gallery.length > 3
+        ? productData.gallery.slice(0, 3)
+        : productData.gallery
+      : [];
+    const largeImage = productData.gallery
+      ? productData.gallery[this.state.selectedSmallImage]
+      : "";
+
     return (
       <Wrapper>
         <SmallSizes>
-          {images.map((img, index) => (
-            <PDSmallContainer key={`small-images-index${index}`}>
+          {smallImages.map((img, index) => (
+            <PDSmallContainer
+              onClick={() => this.setState({ selectedSmallImage: index })}
+              selected={index === this.state.selectedSmallImage}
+              key={`small-images-index${index}`}
+            >
               <PDSmallImage src={img} alt="small-images" />
             </PDSmallContainer>
           ))}
         </SmallSizes>
         <MainContainer>
-          <PDBigImageWrapper>
-            <PDBigImage src="/assets/images/image.png" alt="big-image" />
+          <PDBigImageWrapper outOfStock={!productData.inStock}>
+            <PDBigImage src={largeImage} alt="big-image" />
           </PDBigImageWrapper>
           <PDDetails>
             <CartItemDetails
@@ -43,16 +112,17 @@ class index extends Component {
             />
             <Price>
               <PriceLabel>PRICE:</PriceLabel>
-              <PriceValue>$50.00</PriceValue>
+              <PriceValue>{`${price.currency.label} ${price.amount}`}</PriceValue>
             </Price>
-            <ButtonWrapper>
-              <Button pdp title="ADD TO CART" />
+            <ButtonWrapper outOfStock={productData.inStock}>
+              <Button
+                disabled={!productData.inStock}
+                onClick={this.addItemToCart}
+                pdp
+                title="ADD TO CART"
+              />
             </ButtonWrapper>
-            <Info>
-              Find stunning women's cocktail dresses and party dresses. Stand
-              out in lace and metallic cocktail dresses and party dresses from
-              all your favorite brands.
-            </Info>
+            <Info>{productData.description}</Info>
           </PDDetails>
         </MainContainer>
       </Wrapper>
@@ -60,4 +130,12 @@ class index extends Component {
   }
 }
 
-export default index;
+const mapStateToProps = (state) => ({
+  currency: state.selectedCurrency,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: (product) => dispatch(addToCart(product)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(index);

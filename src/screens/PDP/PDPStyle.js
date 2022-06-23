@@ -12,13 +12,13 @@ export const PDSmallContainer = styled.span`
   width: 4.937rem;
   height: 5rem;
   margin-bottom: 2.5rem;
-  /* 
-    ${(props) =>
+
+  ${(props) =>
     props.selected &&
     css`
       border: 0.05px solid #5ece7b;
       border-radius: 1rem;
-    `} */
+    `}
 `;
 export const PDSmallImage = styled.img`
   width: 100%;
@@ -89,4 +89,11 @@ export const Info = styled.span`
 export const ButtonWrapper = styled.div`
   margin-bottom: 2.5rem;
   width: 18rem;
+
+  ${(props) =>
+    !props.outOfStock &&
+    css`
+      background-color: rgba(128, 128, 128, 0.4);
+      cursor: not-allowed;
+    `}
 `;
