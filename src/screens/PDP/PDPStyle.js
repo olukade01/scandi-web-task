@@ -89,11 +89,4 @@ export const Info = styled.span`
 export const ButtonWrapper = styled.div`
   margin-bottom: 2.5rem;
   width: 18rem;
-
-  ${(props) =>
-    !props.outOfStock &&
-    css`
-      background-color: rgba(128, 128, 128, 0.4);
-      cursor: not-allowed;
-    `}
 `;

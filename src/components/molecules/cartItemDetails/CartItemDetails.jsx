@@ -33,7 +33,7 @@ export default class CartItemDetails extends Component {
         {this.props.item.attributes.map((attribute) => (
           <SizesWrapper key={`attribute-index-${attribute.id}`}>
             <Label pdp={this.props.pdp} large={this.props.large}>
-              {attribute.name}
+              {attribute.name}:
             </Label>
             <Sizes large={this.props.large}>
               {itemsRender(this.props.large, attribute.items).map((item) => (

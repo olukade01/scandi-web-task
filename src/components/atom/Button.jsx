@@ -14,6 +14,14 @@ const ButtonWrapper = styled.button`
   text-align: center;
 
   ${(props) =>
+    !props.outOfStock &&
+    css`
+      background-color: rgba(128, 128, 128, 0.4);
+      border: none;
+      cursor: not-allowed;
+    `}
+
+  ${(props) =>
     props.pdp &&
     css`
       padding: 1.1rem 0;
@@ -22,11 +30,6 @@ const ButtonWrapper = styled.button`
 `;
 
 export default class Button extends Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {};
-  // }
   render() {
     return (
       <ButtonWrapper
@@ -34,6 +37,9 @@ export default class Button extends Component {
         border={this.props.border}
         background={this.props.background}
         pdp={this.props.pdp}
+        onClick={this.props.onClick}
+        outOfStock={this.props.outOfStock}
+        disabled={this.props.disabled}
       >
         {this.props.title}
       </ButtonWrapper>

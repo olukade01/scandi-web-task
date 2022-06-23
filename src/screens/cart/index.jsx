@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Button from "../../components/atom/Button";
 import CartItem from "../../components/molecules/cartItem/CartItem";
-import { cartItemsData, CartOrder } from "../../data/cart-items";
+// import { mutateProductQuantity } from "../../store/actions";
+import { CartOrder } from "../../data/cart-items";
 import {
   ButtonWrapper,
   CartWrapper,
@@ -18,8 +20,8 @@ class index extends Component {
       <div>
         <Title>CART</Title>
         <CartWrapper>
-          {!cartItemsData.length && <EmptyCart>No Item in Cart</EmptyCart>}
-          {cartItemsData.map((items, index) => (
+          {!this.props.cart.length && <EmptyCart>No Item in Cart</EmptyCart>}
+          {this.props.cart.map((items, index) => (
             <CartItem key={`cartItemsIndex${index}`} large items={items} />
           ))}
           <TotalOrder>
@@ -41,4 +43,13 @@ class index extends Component {
   }
 }
 
-export default index;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//   mutateQuantity: (mutationType, productId) =>
+//     dispatch(mutateProductQuantity(mutationType, productId)),
+// });
+
+export default connect(mapStateToProps, null)(index);

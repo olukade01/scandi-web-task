@@ -19,7 +19,7 @@ class ProductCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: {},
+      // category: {},
     };
 
     this.handleProductDetails = this.handleProductDetails.bind(this);
@@ -38,10 +38,7 @@ class ProductCard extends Component {
     if (e.target.alt === "cart-icon") return null;
     var { id } = this.props.product;
 
-    console.log(id);
-
     var { history } = this.props;
-    console.log({ history });
     history.push(`/product/${id}`);
   }
 

@@ -6,6 +6,7 @@ import opusClient from "../../server";
 import { PRODUCT_QUERY } from "../../server/queries";
 import { addToCart } from "../../store/actions";
 import { getPriceInCurrencySelected, setAttributesDefault } from "../../utils";
+import parse from "html-react-parser";
 import {
   ButtonWrapper,
   Info,
@@ -44,18 +45,9 @@ class index extends Component {
     }));
   }
 
-  addItemToCart() {
-    const productToAdd = {
-      ...this.state.product,
-      selectedOptions: this.state.selectedOptions,
-    };
-    this.props.addToCart(productToAdd);
-  }
-
   async componentDidMount() {
     try {
       const productId = this.props.match.params.id;
-      // console.log(this.props.match.params);
       var { product } = await opusClient.post(PRODUCT_QUERY(productId));
       this.setState({
         product,
@@ -66,9 +58,16 @@ class index extends Component {
     }
   }
 
+  addItemToCart() {
+    const productToAdd = {
+      ...this.state.product,
+      selectedOptions: this.state.selectedOptions,
+    };
+    this.props.addToCart(productToAdd);
+  }
+
   render() {
     const productData = this.state.product;
-    console.log({ productData });
     const isDataFetched = Object.keys(productData).length;
     const selectedOptionToShow = this.state.selectedOptions;
     const price = productData.prices
@@ -104,7 +103,7 @@ class index extends Component {
               </PDBigImageWrapper>
               <PDDetails>
                 <CartItemDetails
-                  key={`cart-item-index${index}`}
+                  // key={`cart-item-index${index}`}
                   item={productData}
                   handleOption={this.handleOptionSet}
                   selectedOptionToShow={selectedOptionToShow}
@@ -116,15 +115,16 @@ class index extends Component {
                   <PriceLabel>PRICE:</PriceLabel>
                   <PriceValue>{`${price.currency.label} ${price.amount}`}</PriceValue>
                 </Price>
-                <ButtonWrapper outOfStock={productData.inStock}>
+                <ButtonWrapper>
                   <Button
+                    outOfStock={productData.inStock}
                     disabled={!productData.inStock}
                     onClick={this.addItemToCart}
                     pdp
                     title="ADD TO CART"
                   />
                 </ButtonWrapper>
-                <Info>{productData.description}</Info>
+                <Info>{parse(productData.description)}</Info>
               </PDDetails>
             </MainContainer>
           </Wrapper>

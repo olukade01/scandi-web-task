@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import { cartItemsData } from "../../../data/cart-items";
 import { toggleCart } from "../../../store/actions";
 import { totalCartAmount } from "../../../utils";
 import Button from "../../atom/Button";
