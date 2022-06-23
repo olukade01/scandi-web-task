@@ -1,50 +1,68 @@
 import React, { Component } from "react";
 import {
-  Color,
+  checkSwatchType,
+  itemsRender,
+  renderAttributeValue,
+} from "../../../utils/helpers";
+import {
   ItemDesc,
   ItemName,
   ItemPrice,
   Label,
   Size,
   Sizes,
+  SizesWrapper,
   Wrapper,
 } from "./CartDetailsStyle";
 
 export default class CartItemDetails extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     item: {},
-  //   };
-  // }
   render() {
+    const nameArr = String(this.props.item.name).split(" ");
+    const productName = nameArr.length > 3 ? nameArr[0] : nameArr.join(" ");
+    const productShortDesc =
+      nameArr.length > 3 ? nameArr.slice(1).join(" ") : "";
     return (
       <Wrapper large={this.props.large}>
-        <ItemName large={this.props.large}>{this.props.prdName}</ItemName>
-        <ItemDesc pdp={this.props.pdp}>{this.props.prdDesc}</ItemDesc>
-        <ItemPrice pdp={this.props.pdp} large={this.props.large}>
-          {this.props.items.amount}
-        </ItemPrice>
-        <Label pdp={this.props.pdp} large={this.props.large}>
-          Size:
-        </Label>
-        <Sizes large={this.props.large}>
-          {this.props.items.sizes.map((size) => (
-            <Size large={this.props.large}>{size}</Size>
-          ))}
-        </Sizes>
-        <Label pdp={this.props.pdp} large={this.props.large}>
-          Color:
-        </Label>
-        <Sizes large={this.props.large}>
-          {this.props.items.colors.map((color, index) => (
-            <Color
-              large={this.props.large}
-              key={`colorIndex-${index}`}
-              background={color}
-            />
-          ))}
-        </Sizes>
+        <ItemName large={this.props.large}>{productName}</ItemName>
+        <ItemDesc pdp={this.props.pdp}>{productShortDesc}</ItemDesc>
+        {!this.props.pdp && (
+          <ItemPrice pdp={this.props.pdp} large={this.props.large}>
+            {`${this.props.price.currency.label} ${this.props.price.amount}`}
+          </ItemPrice>
+        )}
+        {this.props.item.attributes.map((attribute) => (
+          <SizesWrapper key={`attribute-index-${attribute.id}`}>
+            <Label pdp={this.props.pdp} large={this.props.large}>
+              {attribute.name}
+            </Label>
+            <Sizes large={this.props.large}>
+              {itemsRender(this.props.large, attribute.items).map((item) => (
+                <Size
+                  large={this.props.large}
+                  key={`item-index-${item.id}`}
+                  onClick={() => this.props.handleOption(attribute.name, item)}
+                  style={
+                    attribute.type === "swatch"
+                      ? { backgroundColor: item.value }
+                      : {}
+                  }
+                  swatchActive={checkSwatchType(
+                    attribute,
+                    item,
+                    this.props.selectedOptionToShow
+                  )}
+                  active={
+                    item.displayValue ===
+                    this.props.selectedOptionToShow[attribute.name].displayValue
+                  }
+                  disabled={this.props.disabled && item.displayValue === "XS"}
+                >
+                  {renderAttributeValue(this.props.large, attribute, item)}
+                </Size>
+              ))}
+            </Sizes>
+          </SizesWrapper>
+        ))}
       </Wrapper>
     );
   }

@@ -39,9 +39,10 @@ class ProductCard extends Component {
     var { id } = this.props.product;
 
     console.log(id);
+
     var { history } = this.props;
+    console.log({ history });
     history.push(`/product/${id}`);
-    console.log(history);
   }
 
   render() {

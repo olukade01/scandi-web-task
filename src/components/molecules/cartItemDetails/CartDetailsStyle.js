@@ -63,6 +63,18 @@ export const ItemPrice = styled.span`
       font-size: 1.5rem;
     `}
 `;
+export const SizesWrapper = styled.div`
+  /* display: flex;
+  align-items: center;
+  margin-top: 0.4rem;
+  column-gap: 0.5rem; */
+
+  /* ${(props) =>
+    props.large &&
+    css`
+      margin-top: 0.5rem;
+    `} */
+`;
 export const Sizes = styled.div`
   display: flex;
   align-items: center;
@@ -100,11 +112,18 @@ export const Size = styled.span`
     css`
       background-color: #1d1f22;
       color: #fff;
-    `} /* ${({ swatchActive }) =>
+    `}
+     ${({ swatchActive }) =>
     swatchActive &&
     css`
       border: 3px solid #5ece7b; ;
-    `} */
+    `}
+    ${(props) =>
+    props.disabled &&
+    css`
+      color: #a6a6a6;
+      border: 1px solid #a6a6a6;
+    `}
 `;
 export const Color = styled.span`
   width: 20px;

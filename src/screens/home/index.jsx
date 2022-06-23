@@ -5,6 +5,7 @@ import opusClient from "../../server";
 import { Title, Wrapper } from "./HomeStyle";
 import { connect } from "react-redux";
 import { CATEGORY_QUERY } from "../../server/queries";
+// import { Link } from "react-router-dom";
 
 class index extends Component {
   constructor(props) {
@@ -49,11 +50,13 @@ class index extends Component {
         <Title>{this.props.selectedCategory}</Title>
         <Wrapper>
           {productsToShow.map((product, index) => (
+            // <Link to={`/product/${product.id}`}>
             <ProductCard
               key={`product-index${index}`}
               history={this.props.history}
               product={product}
             />
+            // </Link>
           ))}
         </Wrapper>
       </Fragment>

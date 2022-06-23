@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "../../components/atom/Button";
 import CartItemDetails from "../../components/molecules/cartItemDetails/CartItemDetails";
-import { cartItemsData } from "../../data/cart-items";
-// import { images } from "../../data/pdp";
 import opusClient from "../../server";
 import { PRODUCT_QUERY } from "../../server/queries";
 import { addToCart } from "../../store/actions";
@@ -57,6 +55,7 @@ class index extends Component {
   async componentDidMount() {
     try {
       const productId = this.props.match.params.id;
+      // console.log(this.props.match.params);
       var { product } = await opusClient.post(PRODUCT_QUERY(productId));
       this.setState({
         product,
@@ -69,11 +68,9 @@ class index extends Component {
 
   render() {
     const productData = this.state.product;
+    console.log({ productData });
     const isDataFetched = Object.keys(productData).length;
-    const nameArr = String(productData.name).split(" ");
-    const productName = nameArr.length > 3 ? nameArr[0] : nameArr.join(" ");
-    const productShortDesc =
-      nameArr.length > 3 ? nameArr.slice(1).join(" ") : "";
+    const selectedOptionToShow = this.state.selectedOptions;
     const price = productData.prices
       ? getPriceInCurrencySelected(productData.prices, this.props.currency)
       : {};
@@ -87,45 +84,52 @@ class index extends Component {
       : "";
 
     return (
-      <Wrapper>
-        <SmallSizes>
-          {smallImages.map((img, index) => (
-            <PDSmallContainer
-              onClick={() => this.setState({ selectedSmallImage: index })}
-              selected={index === this.state.selectedSmallImage}
-              key={`small-images-index${index}`}
-            >
-              <PDSmallImage src={img} alt="small-images" />
-            </PDSmallContainer>
-          ))}
-        </SmallSizes>
-        <MainContainer>
-          <PDBigImageWrapper outOfStock={!productData.inStock}>
-            <PDBigImage src={largeImage} alt="big-image" />
-          </PDBigImageWrapper>
-          <PDDetails>
-            <CartItemDetails
-              key={`cart-item-index${index}`}
-              items={cartItemsData[0]}
-              large
-              pdp
-            />
-            <Price>
-              <PriceLabel>PRICE:</PriceLabel>
-              <PriceValue>{`${price.currency.label} ${price.amount}`}</PriceValue>
-            </Price>
-            <ButtonWrapper outOfStock={productData.inStock}>
-              <Button
-                disabled={!productData.inStock}
-                onClick={this.addItemToCart}
-                pdp
-                title="ADD TO CART"
-              />
-            </ButtonWrapper>
-            <Info>{productData.description}</Info>
-          </PDDetails>
-        </MainContainer>
-      </Wrapper>
+      <>
+        {isDataFetched !== 0 && (
+          <Wrapper>
+            <SmallSizes>
+              {smallImages.map((img, index) => (
+                <PDSmallContainer
+                  onClick={() => this.setState({ selectedSmallImage: index })}
+                  selected={index === this.state.selectedSmallImage}
+                  key={`small-images-index${index}`}
+                >
+                  <PDSmallImage src={img} alt="small-images" />
+                </PDSmallContainer>
+              ))}
+            </SmallSizes>
+            <MainContainer>
+              <PDBigImageWrapper outOfStock={!productData.inStock}>
+                <PDBigImage src={largeImage} alt="big-image" />
+              </PDBigImageWrapper>
+              <PDDetails>
+                <CartItemDetails
+                  key={`cart-item-index${index}`}
+                  item={productData}
+                  handleOption={this.handleOptionSet}
+                  selectedOptionToShow={selectedOptionToShow}
+                  disabled
+                  large
+                  pdp
+                />
+                <Price>
+                  <PriceLabel>PRICE:</PriceLabel>
+                  <PriceValue>{`${price.currency.label} ${price.amount}`}</PriceValue>
+                </Price>
+                <ButtonWrapper outOfStock={productData.inStock}>
+                  <Button
+                    disabled={!productData.inStock}
+                    onClick={this.addItemToCart}
+                    pdp
+                    title="ADD TO CART"
+                  />
+                </ButtonWrapper>
+                <Info>{productData.description}</Info>
+              </PDDetails>
+            </MainContainer>
+          </Wrapper>
+        )}
+      </>
     );
   }
 }
