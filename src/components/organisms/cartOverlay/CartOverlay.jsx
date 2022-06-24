@@ -23,7 +23,7 @@ class CartOverlay extends Component {
         ? this.props.cart.slice(0, 2)
         : this.props.cart;
     const currency = this.props.selectedCurrency;
-    const total = totalCartAmount(this.props.cart, currency);
+    const total = totalCartAmount(this.props.cart, currency).toLocaleString();
 
     return (
       <Wrapper>
@@ -33,7 +33,7 @@ class CartOverlay extends Component {
           </Title>
           <CartItemsWrapper>
             {cartItemToShow.map((items, index) => (
-              <CartItem key={`cartItemsIndex${index}`} items={items} />
+              <CartItem key={`cartItemsIndex${index}`} cartItemId={items.id} />
             ))}
           </CartItemsWrapper>
           {this.props.cart.length !== 0 && (

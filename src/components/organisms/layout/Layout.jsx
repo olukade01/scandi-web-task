@@ -8,7 +8,7 @@ class index extends Component {
   render() {
     return (
       <Wrapper>
-        <Navbar />
+        <Navbar history={this.props.history} />
         <Main>
           {this.props.isCartOpen && <CartOverlay />}
           <Content>{this.props.children}</Content>

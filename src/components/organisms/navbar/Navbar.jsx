@@ -102,7 +102,10 @@ class index extends React.Component {
               className={
                 this.props.selectedCategory === tab.name ? "active" : ""
               }
-              onClick={() => this.props.setCategory(tab.name)}
+              onClick={() => {
+                this.props.setCategory(tab.name);
+                // this.props.history.push(`/${tab.name}`);
+              }}
             >
               {tab.name}
             </Tab>

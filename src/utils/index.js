@@ -30,5 +30,5 @@ export const totalCartAmount = (cartItems, selectedCurrency) => {
       const itemAmount = item.quantity * price;
       return acc + itemAmount;
     }, 0)
-  ).toLocaleString();
+  );
 };
