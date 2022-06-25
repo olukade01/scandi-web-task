@@ -12,6 +12,7 @@ import {
   ItemImgWrapper,
   ItemQuantity,
   ItemQuantityWrapper,
+  MinusButton,
   Wrapper,
 } from "./CartItemStyle";
 
@@ -85,7 +86,7 @@ class CartItem extends Component {
     const { id, quantity, name } = item;
     if (mutationType === "remove" && quantity === 1) {
       this.handleCartItemDelete(id, name);
-      // return null;
+      return null;
     }
     const addItem = mutationType === "add" ? this.state.selectedOptions : {};
     this.props.mutateQuantity(mutationType, id, addItem);
@@ -145,12 +146,12 @@ class CartItem extends Component {
                   +
                 </AddButton>
                 <ItemQuantity>{item.quantity}</ItemQuantity>
-                <AddButton
+                <MinusButton
                   onClick={() => this.handleQuantityChange("remove", item)}
                   large={this.props.large}
                 >
                   -
-                </AddButton>
+                </MinusButton>
               </ItemQuantityWrapper>
               <ItemDisplayWrapper large={this.props.large}>
                 {this.props.large && (

@@ -33,8 +33,8 @@ export const addToCart = (product) => ({
   payload: { product },
 });
 export const mutateProductQuantity = (
-  productId,
   mutationType,
+  productId,
   newSelectedOption
 ) => ({
   type: MUTATEQUANTITY,

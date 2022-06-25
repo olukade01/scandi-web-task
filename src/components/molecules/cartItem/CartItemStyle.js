@@ -51,6 +51,8 @@ export const AddButton = styled(Size)`
       height: 2.81rem;
     `}
 `;
+export const MinusButton = styled(AddButton)``;
+
 export const ItemDisplayWrapper = styled.div`
   position: relative;
   width: 8.4rem;

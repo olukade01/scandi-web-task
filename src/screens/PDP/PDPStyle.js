@@ -83,7 +83,6 @@ export const PriceValue = styled.span`
 `;
 export const Info = styled.span`
   max-width: 18.3rem;
-  /* line-height: 25.6px; */
 `;
 export const ButtonWrapper = styled.div`
   margin-bottom: 2.5rem;
