@@ -52,8 +52,8 @@ class CartOverlay extends Component {
                 <Button
                   background="transparent"
                   border="1px solid black"
-                  title="VIEW BAG"
                   color="black"
+                  title="VIEW BAG"
                 />
               </ButtonWrapper>
             </Link>

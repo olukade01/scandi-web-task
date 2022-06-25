@@ -13,9 +13,7 @@ export const MiniCart = styled.div`
   width: 20.3rem;
   right: 5.4rem;
   position: absolute;
-  /* background-color: rgba(57, 55, 72, 0.1); */
   background: #fff;
-  /* color: #fff; */
   padding: 2rem 1rem 1.25rem 1rem;
 `;
 export const Title = styled.span`
@@ -44,5 +42,3 @@ export const Buttons = styled.div`
 export const ButtonWrapper = styled.div`
   width: 9.7rem;
 `;
-// export const Buttons = styled.div``;
-// export const Buttons = styled.div``;

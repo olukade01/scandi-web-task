@@ -22,7 +22,7 @@ export default class CartItemDetails extends Component {
     const productShortDesc =
       nameArr.length > 3 ? nameArr.slice(1).join(" ") : "";
     return (
-      <Wrapper large={this.props.large}>
+      <Wrapper pdp={this.props.pdp} large={this.props.large}>
         <ItemName large={this.props.large}>{productName}</ItemName>
         <ItemDesc pdp={this.props.pdp}>{productShortDesc}</ItemDesc>
         {!this.props.pdp && (

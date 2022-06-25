@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from "react";
 import ProductCard from "../../components/molecules/productCard/ProductCard";
 import opusClient from "../../server";
-// import { productToShow } from "../../data/products";
 import { Title, Wrapper } from "./HomeStyle";
 import { connect } from "react-redux";
 import { CATEGORY_QUERY } from "../../server/queries";
-// import { Link } from "react-router-dom";
 
 class index extends Component {
   constructor(props) {
@@ -47,16 +45,14 @@ class index extends Component {
     const productsToShow = this.state.category.products || [];
     return (
       <Fragment>
-        <Title>{this.props.selectedCategory}</Title>
+        <Title>{this.props.selectedCategory.toUpperCase()}</Title>
         <Wrapper>
           {productsToShow.map((product, index) => (
-            // <Link to={`/product/${product.id}`}>
             <ProductCard
               key={`product-index${index}`}
               history={this.props.history}
               product={product}
             />
-            // </Link>
           ))}
         </Wrapper>
       </Fragment>

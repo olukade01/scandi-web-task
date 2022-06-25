@@ -74,9 +74,10 @@ class index extends Component {
       ? getPriceInCurrencySelected(productData.prices, this.props.currency)
       : {};
     const smallImages = productData.gallery
-      ? productData.gallery.length > 3
-        ? productData.gallery.slice(0, 3)
-        : productData.gallery
+      ? // productData.gallery.length > 3
+        //   ? productData.gallery.slice(0, 3)
+        //   :
+        productData.gallery
       : [];
     const largeImage = productData.gallery
       ? productData.gallery[this.state.selectedSmallImage]
@@ -103,7 +104,6 @@ class index extends Component {
               </PDBigImageWrapper>
               <PDDetails>
                 <CartItemDetails
-                  // key={`cart-item-index${index}`}
                   item={productData}
                   handleOption={this.handleOptionSet}
                   selectedOptionToShow={selectedOptionToShow}
@@ -117,7 +117,7 @@ class index extends Component {
                 </Price>
                 <ButtonWrapper>
                   <Button
-                    outOfStock={productData.inStock}
+                    outOfStock={!productData.inStock}
                     disabled={!productData.inStock}
                     onClick={this.addItemToCart}
                     pdp

@@ -20,7 +20,6 @@ import {
   Cart,
   CurrencyDisplay,
   Badges,
-  CaretWrapper,
   FilterOptions,
   Option,
 } from "./NavbarStyle";
@@ -104,10 +103,9 @@ class index extends React.Component {
               }
               onClick={() => {
                 this.props.setCategory(tab.name);
-                // this.props.history.push(`/${tab.name}`);
               }}
             >
-              {tab.name}
+              {tab.name.toUpperCase()}
             </Tab>
           ))}
         </NavTabs>
@@ -123,14 +121,12 @@ class index extends React.Component {
               <CurrencyDisplay data-name="currency-box">
                 {this.props.currency.label}
               </CurrencyDisplay>
-              <CaretWrapper data-name="currency-box">
-                <ImgWrapper
-                  data-name="currency-box"
-                  alt="caret-arrow"
-                  src="/assets/vectors/caret-arrow.svg"
-                  rotate={this.state.showFilterOption === true ? "true" : ""}
-                />
-              </CaretWrapper>
+              <ImgWrapper
+                data-name="currency-box"
+                alt="caret-arrow"
+                src="/assets/vectors/caret-arrow.svg"
+                rotate={this.state.showFilterOption === true ? "true" : ""}
+              />
             </CurrencyWrapper>
             <Cart onClick={() => this.props.toggleCart()}>
               {showBadges && <Badges>{this.props.cart.length}</Badges>}

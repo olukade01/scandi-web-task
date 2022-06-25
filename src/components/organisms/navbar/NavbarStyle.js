@@ -29,6 +29,7 @@ export const Tab = styled.span`
   }
 `;
 export const ImgWrapper = styled.img`
+  display: flex;
   ${({ rotate }) =>
     rotate &&
     css`
@@ -49,7 +50,7 @@ export const CurrencyWrapper = styled.div`
   display: flex;
   cursor: pointer;
   align-items: center;
-  /* user-select: none; */
+  user-select: none;
 `;
 export const Cart = styled.div`
   display: flex;
@@ -61,11 +62,10 @@ export const Cart = styled.div`
 export const CurrencyDisplay = styled.span`
   display: flex;
   align-items: center;
-  font-size: 18px;
   justify-content: center;
   width: 2rem;
-  /* height: 1.81rem; */
-  /* margin-right: 0.5rem; */
+  height: 1.81rem;
+  margin-right: 0.5rem;
 `;
 export const Badges = styled.div`
   width: 1.25rem;
@@ -82,29 +82,21 @@ export const Badges = styled.div`
   right: -0.7rem;
   top: -0.7rem;
 `;
-export const CaretWrapper = styled.div`
-  display: flex;
-  margin-bottom: 0.3rem;
-  align-self: flex-end;
-`;
 export const FilterOptions = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   position: absolute;
-  z-index: 500;
-  bottom: -820%;
+  z-index: 400;
+  bottom: -900%;
   left: -10%;
   width: 140%;
   background-color: #fff;
   padding: 0.7rem 0;
   font-size: 18px;
   font-weight: 400;
-  /* color: #1d1f22; */
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
 `;
 export const Option = styled.span`
-  /* margin-bottom: 1.51rem; */
   padding: 0.8rem 0.5rem 0.8rem 1.2rem;
   cursor: pointer;
 

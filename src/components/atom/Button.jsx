@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 const ButtonWrapper = styled.button`
   font-weight: 500;
-  /* flex-grow: 1; */
+  width: 100%;
   font-size: 0.875rem;
   outline: none;
   cursor: pointer;
@@ -14,7 +14,7 @@ const ButtonWrapper = styled.button`
   text-align: center;
 
   ${(props) =>
-    !props.outOfStock &&
+    props.outOfStock &&
     css`
       background-color: rgba(128, 128, 128, 0.4);
       border: none;

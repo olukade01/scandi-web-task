@@ -31,8 +31,7 @@ export const MainContainer = styled.div`
 `;
 export const PDBigImageWrapper = styled.div`
   width: 38.12rem;
-  height: 31.93rem;
-  background-color: red;
+  height: 38.12rem;
   transition: 0.2s all ease-in-out;
 
   ${(props) =>
@@ -41,13 +40,13 @@ export const PDBigImageWrapper = styled.div`
       opacity: 0.5;
       &::after {
         content: "OUT OF STOCK";
-        top: 0;
+        top: 5rem;
         color: #8d8f9a;
         font-size: 1.5rem;
         position: absolute;
         z-index: 200;
         width: 38.12rem;
-        height: 28.93rem;
+        height: 38.12rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -58,20 +57,20 @@ export const PDBigImageWrapper = styled.div`
 export const PDBigImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 `;
 export const PDDetails = styled.div`
   display: flex;
   flex-direction: column;
-  /* max-height: 28.93rem; */
-  /* overflow: auto; */
+  max-height: 40.93rem;
+  overflow: auto;
   padding-right: 1rem;
 `;
 export const Price = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 2.25rem 0 1.56rem;
+  margin: 2.56rem 0 1.56rem;
 `;
 export const PriceLabel = styled.span`
   font-weight: 700;
@@ -84,7 +83,7 @@ export const PriceValue = styled.span`
 `;
 export const Info = styled.span`
   max-width: 18.3rem;
-  line-height: 25.6px;
+  /* line-height: 25.6px; */
 `;
 export const ButtonWrapper = styled.div`
   margin-bottom: 2.5rem;

@@ -6,12 +6,18 @@ export const Wrapper = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  /* overflow-y: auto; */
+  overflow-y: auto;
 
   ${(props) =>
     props.large &&
     css`
       font-size: 1.875rem;
+    `}
+  ${(props) =>
+    props.pdp &&
+    css`
+      overflow-y: unset;
+      flex-grow: 0;
     `}
 `;
 export const ItemName = styled.span`
@@ -22,16 +28,16 @@ export const ItemName = styled.span`
     `}
 `;
 export const ItemDesc = styled.span`
-  margin: 0.4rem 0;
+  margin-top: 0.4rem;
 
   ${(props) =>
     props.pdp &&
     css`
       margin-bottom: 1.18rem;
-    `};
+    `}
 `;
 export const Label = styled.span`
-  margin-top: 0.6rem;
+  font-size: 14px;
   ${(props) =>
     props.large &&
     css`
@@ -48,7 +54,7 @@ export const Label = styled.span`
 `;
 export const ItemPrice = styled.span`
   font-weight: 500;
-  margin-top: 0.7rem;
+  margin-top: 0.8rem;
 
   ${(props) =>
     props.pdp &&
@@ -64,10 +70,7 @@ export const ItemPrice = styled.span`
     `}
 `;
 export const SizesWrapper = styled.div`
-  /* display: flex;
-  align-items: center;
-  margin-top: 0.4rem;
-  column-gap: 0.5rem; */
+  margin-top: 0.7rem;
 
   /* ${(props) =>
     props.large &&
