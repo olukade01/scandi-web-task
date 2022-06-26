@@ -6,8 +6,6 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 export const Main = styled.div`
-  /* padding: 0 101px;
-  margin-top: 80px; */
   position: relative;
   flex-grow: 1;
 `;

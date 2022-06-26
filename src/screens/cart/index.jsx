@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "../../components/atom/Button";
 import CartItem from "../../components/molecules/cartItem/CartItem";
-// import { mutateProductQuantity } from "../../store/actions";
 import { CartOrder } from "../../data/cart-items";
 import { totalCartAmount } from "../../utils";
 import {
@@ -38,7 +37,7 @@ class index extends Component {
           {this.props.cart.length !== 0 && (
             <TotalOrder>
               {CartOrder.map((order, index) => (
-                <OrderDetails>
+                <OrderDetails key={`cart-order-index${index}`}>
                   <LightOrderDetails bold={index === CartOrder.length - 1}>
                     {order.name}:
                   </LightOrderDetails>
@@ -66,10 +65,5 @@ const mapStateToProps = (state) => ({
   cart: state.cart,
   currency: state.selectedCurrency,
 });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   mutateQuantity: (mutationType, productId) =>
-//     dispatch(mutateProductQuantity(mutationType, productId)),
-// });
 
 export default connect(mapStateToProps, null)(index);

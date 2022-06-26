@@ -121,7 +121,6 @@ class CartItem extends Component {
     const item = this.state.item;
     const selectedOptionToShow = this.state.selectedOptions;
     const showItems = Object.keys(item).length !== 0;
-    // const showAttributes = Object.keys(selectedOptionToShow).length !== 0;
     const price = showItems
       ? getPriceInCurrencySelected(item.prices, this.props.currency)
       : {};

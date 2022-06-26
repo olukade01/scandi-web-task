@@ -71,12 +71,6 @@ export const ItemPrice = styled.span`
 `;
 export const SizesWrapper = styled.div`
   margin-top: 0.7rem;
-
-  /* ${(props) =>
-    props.large &&
-    css`
-      margin-top: 0.5rem;
-    `} */
 `;
 export const Sizes = styled.div`
   display: flex;
@@ -97,8 +91,7 @@ export const Size = styled.span`
   height: 1.5rem;
   width: 1.5rem;
   border: 1px solid #1d1f22;
-  /* user-select: none; */
-  /* text-align: center; */
+  user-select: none;
   font-weight: 400;
   font-size: 0.875rem;
 

@@ -11,7 +11,6 @@ export const CartWrapper = styled.div`
   padding-bottom: 12rem;
   border-top: 1px solid #e5e5e5;
   padding-top: 1.5rem;
-  /* width: 68.62rem; */
 `;
 export const EmptyCart = styled.span`
   text-align: center;

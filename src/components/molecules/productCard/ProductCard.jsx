@@ -18,9 +18,7 @@ import {
 class ProductCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // category: {},
-    };
+    this.state = {};
 
     this.handleProductDetails = this.handleProductDetails.bind(this);
     this.addItemToCart = this.addItemToCart.bind(this);

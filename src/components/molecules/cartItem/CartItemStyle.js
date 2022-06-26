@@ -4,7 +4,6 @@ import { Size } from "../cartItemDetails/CartDetailsStyle";
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  /* overflow-y: hidden; */
   margin-bottom: 2.5rem;
   max-height: 12.3rem;
   height: 12.3rem;
@@ -73,13 +72,10 @@ export const ArrowRight = styled.img`
   background: rgba(0, 0, 0, 0.73);
   padding: 0.3rem 0.5rem;
   cursor: pointer;
-  /* z-index: 800; */
   right: 1rem;
   bottom: 1rem;
-  /* top: calc(50%-0.75rem); */
 `;
 export const ArrowLeft = styled(ArrowRight)`
   right: 3rem;
   transform: rotate(180deg);
-  /* transition: 0.2s all ease-in-out; */
 `;
